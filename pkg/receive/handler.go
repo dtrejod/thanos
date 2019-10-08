@@ -134,6 +134,7 @@ func (h *Handler) testReady(f http.HandlerFunc) http.HandlerFunc {
 
 // Close stops the Handler.
 func (h *Handler) Close() {
+	h.SetWriter(nil)
 	if h.listener != nil {
 		runutil.CloseWithLogOnErr(h.logger, h.listener, "receive HTTP listener")
 	}
